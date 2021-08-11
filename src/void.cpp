@@ -3,11 +3,11 @@
 #include <string>
 #include "command.h"
 
-
 void print_usage_format()
 {
     std::cout << "\nUsage:" << std::endl;
-    std::cout << "\tvoid [command]\n" << std::endl;
+    std::cout << "\tvoid [command]\n"
+              << std::endl;
 
     std::cout << "Available Commands:" << std::endl;
     std::cout << std::left;
@@ -19,13 +19,13 @@ void print_usage_format()
     std::cout << std::setw(30) << "Builds project files into a dynamic library for execution" << std::endl;
 
     std::cout << std::setw(1) << "\t" << std::setw(10) << "serve";
-    std::cout << std::setw(30) << "Interfaces with the project library and runs a server instance\n" << std::endl;
+    std::cout << std::setw(30) << "Interfaces with the project library and runs a server instance\n"
+              << std::endl;
 }
 
-
-int main(int argc, char **argv) 
+int main(int argc, char **argv)
 {
-    if (argc != 2) 
+    if (argc != 2)
     {
         print_usage_format();
         return 1;
@@ -42,13 +42,11 @@ int main(int argc, char **argv)
     }
 
     // other commands - [build, serve]
-    if (command == "build") return Command::build();
-    else if (command == "serve") return Command::serve();
-    else 
-    {
-        print_usage_format();
-        return 1;
-    }
+    if (command == "build")
+        return Command::build();
+    if (command == "serve")
+        return Command::serve();
 
-    return 0;
+    print_usage_format();
+    return 1;
 }
